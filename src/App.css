@@ -1,42 +1,100 @@
-/* ---------------------- */
-/* RESET + GLOBAL STYLES  */
-/* ---------------------- */
-* {
-  box-sizing: border-box;
+/* ======================= */
+/* CSS VARIABLES           */
+/* ======================= */
+:root {
+  /* Colors */
+  --color-primary: #0d1a4f;
+  --color-primary-hover: #091337;
+  --color-background: #f5f6fa;
+  --color-white: #ffffff;
+  --color-text-primary: #222222;
+  --color-text-secondary: #666666;
+  --color-border: #dddddd;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 28px;
+  
+  /* Border radius */
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 30px;
+  --radius-xl: 40px;
+  
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 22px rgba(0, 0, 0, 0.12);
+  --shadow-nav: 0 -4px 16px rgba(0, 0, 0, 0.12);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
 }
 
-html, body, #root {
-  height: 100%;
+/* ======================= */
+/* RESET + GLOBAL STYLES   */
+/* ======================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
-  background: #f5f6fa;
-  font-family: "Inter", Arial, sans-serif;
-  color: #222;
+  background: var(--color-background);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------------------- */
-/* MAIN CONTAINER         */
-/* ---------------------- */
+/* ======================= */
+/* MAIN CONTAINER          */
+/* ======================= */
 .container {
   width: 100%;
-  max-width: 1400px;     /* desktop width */
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 24px;
+  padding: var(--spacing-xl);
+  min-height: 100vh;
 }
 
-/* ---------------------- */
-/* SEARCH BAR             */
-/* ---------------------- */
+/* Responsive container padding */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+}
+
+/* ======================= */
+/* SEARCH BAR              */
+/* ======================= */
 .search-bar {
   display: flex;
   align-items: center;
-  background: #ffffff;
-  padding: 14px 20px;
-  border-radius: 40px;
-  gap: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: var(--color-white);
+  padding: 14px var(--spacing-lg);
+  border-radius: var(--radius-xl);
+  gap: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast);
+}
+
+.search-bar:focus-within {
+  box-shadow: var(--shadow-md);
 }
 
 .search-bar input {
@@ -44,123 +102,271 @@ body {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #333;
+  color: var(--color-text-primary);
+  background: transparent;
+}
+
+.search-bar input::placeholder {
+  color: var(--color-text-secondary);
 }
 
 .search-btn {
-  background: #0d1a4f;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 30px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 10px var(--spacing-lg);
+  border-radius: var(--radius-lg);
   border: none;
   cursor: pointer;
+  font-weight: 500;
+  transition: background var(--transition-fast);
 }
 
-/* ---------------------- */
-/* CATEGORIES             */
-/* ---------------------- */
+.search-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.search-btn:active {
+  transform: scale(0.98);
+}
+
+/* ======================= */
+/* CATEGORIES              */
+/* ======================= */
 .categories {
-  margin-top: 20px;
+  margin-top: var(--spacing-lg);
   display: flex;
-  gap: 12px;
+  gap: var(--spacing-md);
   overflow-x: auto;
   padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.categories::-webkit-scrollbar {
+  height: 6px;
+}
+
+.categories::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.categories::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
 }
 
 .categories button {
   white-space: nowrap;
-  background: #fff;
+  background: var(--color-white);
   padding: 10px 18px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.categories button:hover,
+.categories button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
 .categories button.active {
-  background: #0d1a4f;
-  color: #fff;
-  border-color: #0d1a4f;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
 }
 
-/* ---------------------- */
-/* SORT BUTTON            */
-/* ---------------------- */
+/* ======================= */
+/* SORT BUTTON             */
+/* ======================= */
 .sort-btn {
   margin-top: 18px;
   width: 100%;
-  background: #0d1a4f;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-white);
   padding: 14px 18px;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
   font-size: 16px;
+  font-weight: 500;
   text-align: left;
+  transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* ---------------------- */
-/* PRODUCT GRID           */
-/* ---------------------- */
+.sort-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.sort-btn:active {
+  transform: scale(0.99);
+}
+
+/* ======================= */
+/* PRODUCT GRID            */
+/* ======================= */
 .grid {
-  margin-top: 28px;
+  margin-top: var(--spacing-2xl);
   display: grid;
   gap: 22px;
   padding-bottom: 120px;
-
-  /* THIS IS THE MAGIC */
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
-/* ---------------------- */
-/* PRODUCT CARD           */
-/* ---------------------- */
+/* Responsive grid adjustments */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ======================= */
+/* PRODUCT CARD            */
+/* ======================= */
 .card {
-  background: #ffffff;
+  background: var(--color-white);
   padding: 14px;
-  border-radius: 18px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast), 
+              box-shadow var(--transition-fast);
+  cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
+}
+
+.card:active {
+  transform: translateY(-2px);
 }
 
 .card .img {
   width: 100%;
   height: 140px;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
+  background: var(--color-background);
 }
 
 .card .title {
   font-weight: 600;
   font-size: 16px;
-  margin-top: 12px;
+  margin-top: var(--spacing-md);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card .subtitle {
   font-size: 14px;
-  color: #666;
-  margin-top: 4px;
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* ---------------------- */
-/* BOTTOM NAV             */
-/* ---------------------- */
+.card .price {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-primary);
+  margin-top: var(--spacing-sm);
+}
+
+/* ======================= */
+/* BOTTOM NAV              */
+/* ======================= */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 64px;
-  background: #ffffff;
+  background: var(--color-white);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-nav);
   z-index: 1000;
+  border-top: 1px solid var(--color-border);
+}
+
+.bottom-nav button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm) 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.bottom-nav button:hover,
+.bottom-nav button.active {
+  color: var(--color-primary);
+}
+
+.login-btn {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: var(--spacing-sm) 16px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.login-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.login-btn:active {
+  transform: scale(0.96);
+}
+
+/* ======================= */
+/* UTILITY CLASSES         */
+/* ======================= */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Loading state */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Error state */
+.error {
+  color: #dc2626;
+  padding: var(--spacing-md);
+  background: #fee;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid #dc2626;
 }
