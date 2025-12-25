@@ -3,10 +3,10 @@ import ProductCard from "./ProductCard";
 
 export default function ProductGrid({ selectedCategory, sortOrder, onSelectProduct, onAddToCart }) {
   const products = [
-    { title: "Strawberries", subtitle: "Fresh pack", category: "Fruits", price: 10, image: "https://i.imgur.com/Tv5VvZy.jpeg" },
-    { title: "Bananas", subtitle: "1kg", category: "Fruits", price: 6, image: "https://i.imgur.com/k1X5B3O.jpg" },
-    { title: "Tomatoes", subtitle: "Organic", category: "Vegetables", price: 7, image: "https://i.imgur.com/YS4bp1O.jpeg" },
-    { title: "Coca Cola", subtitle: "1.5L Bottle", category: "Drinks", price: 12, image: "https://i.imgur.com/n2WQCbz.jpeg" },
+   // { title: "Strawberries", subtitle: "Fresh pack", category: "Fruits", price: 10, image: "https://i.imgur.com/Tv5VvZy.jpeg" },
+   // { title: "Bananas", subtitle: "1kg", category: "Fruits", price: 6, image: "https://i.imgur.com/k1X5B3O.jpg" },
+   // { title: "Tomatoes", subtitle: "Organic", category: "Vegetables", price: 7, image: "https://i.imgur.com/YS4bp1O.jpeg" },
+    //{ title: "Coca Cola", subtitle: "1.5L Bottle", category: "Drinks", price: 12, image: "https://i.imgur.com/n2WQCbz.jpeg" },
   ];
 
   const filtered = selectedCategory === "All"
